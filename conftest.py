@@ -1,13 +1,13 @@
 import pytest
 from selenium import webdriver
-from helpers import Order
+from helpers import User
 
 
-@pytest.fixture(params=["chrome", "firefox"],scope="class")
+@pytest.fixture(params=['chrome', 'firefox'],scope='class')
 def driver(request):
-    if request.param == "chrome":
+    if request.param == 'chrome':
         driver = webdriver.Chrome()
-    if request.param == "firefox":
+    if request.param == 'firefox':
         driver = webdriver.Firefox()
 
     request.cls.driver = driver
@@ -16,12 +16,13 @@ def driver(request):
 
     driver.quit()
 
+@pytest.fixture
+def user(request):
+    user = User()
+    user.register_new_user_and_return_login_password()
 
-@pytest.fixture(params=["data1", "data2"],scope="class")
-def order(request, driver):
-    if request.param == "data1":
-        order = Order()
-    if request.param == "data2":
-        order = Order()
+    request.cls.user = user
 
-    request.cls.order = order
+    yield
+
+    user.delete_user()

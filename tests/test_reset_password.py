@@ -1,17 +1,13 @@
 import allure
 import pytest
-from data import Answers
-from locators import Locators
 from page_objects.reset_password_page import ResetPasswordPageBurgers
 
 
-@pytest.mark.usefixtures('driver')
+@pytest.mark.usefixtures('driver', 'user')
 class TestPasswordRecovery:
 
     @allure.title('Проверка функции восстановления пароля')
-    def test_check_reset_password(self, question_locator, answer_locator, answer_text):
-        reset_password = ResetPasswordPageBurgers(self.driver)
-        reset_password.go_to_page(Url.LOGIN_PAGE)
+    def test_check_reset_password(self):
+        reset_pass = ResetPasswordPageBurgers(self.driver, self.user)
 
-
-        assert answer_on_question == answer_text
+        assert reset_pass.reset_password() == True

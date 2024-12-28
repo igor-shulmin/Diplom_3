@@ -1,11 +1,11 @@
 from selenium.webdriver.common.by import By
 
 
-class LocatorsHome:
+class LocatorsConstructor:
 
     ORDER_FEED_LINK = [By.XPATH, ".//p[text()='Лента Заказов']"]
     ORDER_FEED_TEXT = [By.XPATH, ".//h1[text()='Лента заказов']"]
-    ORDER_FEED_LIST = [By.CSS_SELECTOR, "ul[class='OrderFeed_list__OLh59']"]
+
     ORDER_BUTTON = [By.XPATH, ".//button[text()='Оформить заказ']"]
     ORDER_WINDOW_ID = [By.XPATH,
                        ".//h2[@class='Modal_modal__title_shadow__3ikwq Modal_modal__title__2L34m text text_type_digits-large mb-8']"]
